@@ -20,5 +20,8 @@ export default defineConfig({
   ],
   server: {
     proxy: { '/api': 'http://localhost:3001' },
+    watch: {
+      ignored: ['**/tests/resultados/e2e/**', '**/tests/vibe-testing/evidence/**'],
+    },
   },
 })

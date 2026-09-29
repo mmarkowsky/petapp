@@ -92,9 +92,12 @@ test('navega, filtra e busca texto especial sem quebrar a listagem', async ({ pa
   await page.getByRole('button', { name: 'Animais 3' }).click()
 
   const search = page.getByRole('textbox', { name: 'Pesquisar animal' })
+  await expect(search).toBeVisible()
   await search.fill('"<>& 🐾')
-  await expect(page.getByText('Nenhum animal encontrado')).toBeVisible()
-  await search.fill('')
+  await expect(page.locator('.resident-empty')).toBeVisible()
+  const resetSearch = page.locator('input[aria-label="Pesquisar animal"]')
+  await expect(resetSearch).toBeVisible()
+  await resetSearch.fill('')
   await page.getByRole('button', { name: 'Prontos para adoção 1' }).click()
 
   await expect(page.locator('.resident-card')).toHaveCount(1)
