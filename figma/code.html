@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Refugio - Diretório de Animais</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed-dim": "#4ade80",
+            "primary": "#4ade80",
+            "primary-fixed": "#86efac",
+            "on-tertiary": "#06200e",
+            "surface-variant": "#1c2e22",
+            "on-tertiary-fixed-variant": "#14532d",
+            "tertiary-fixed": "#a7f3d0",
+            "on-tertiary-container": "#022c22",
+            "on-secondary-container": "#451a03",
+            "secondary": "#fbbf24",
+            "on-primary-container": "#052e16",
+            "secondary-fixed": "#fef3c7",
+            "on-surface": "#e6efe9",
+            "tertiary": "#34d399",
+            "on-tertiary-fixed": "#022c22",
+            "surface-container": "#132118",
+            "surface-container-highest": "#213627",
+            "inverse-surface": "#e6efe9",
+            "surface-tint": "#22c55e",
+            "on-error": "#450a0a",
+            "surface-dim": "#0c1510",
+            "surface-container-lowest": "#070d0a",
+            "secondary-fixed-dim": "#f59e0b",
+            "on-error-container": "#fecaca",
+            "secondary-container": "#d97706",
+            "surface-container-low": "#0f1b13",
+            "inverse-primary": "#15803d",
+            "on-background": "#e6efe9",
+            "on-primary-fixed": "#052e16",
+            "surface": "#0c1510",
+            "outline": "#6b8f74",
+            "tertiary-container": "#10b981",
+            "background": "#09100c",
+            "on-surface-variant": "#9db4a3",
+            "surface-bright": "#2a4231",
+            "on-primary-fixed-variant": "#14532d",
+            "error-container": "#7f1d1d",
+            "on-secondary-fixed": "#451a03",
+            "tertiary-fixed-dim": "#6ee7b7",
+            "surface-container-high": "#192b1f",
+            "on-secondary": "#451a03",
+            "error": "#f87171",
+            "on-secondary-fixed-variant": "#78350f",
+            "primary-container": "#16a34a",
+            "inverse-on-surface": "#1c2e22",
+            "on-primary": "#052e16",
+            "outline-variant": "#223829"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem",
+            "gutter": "1.25rem",
+            "space-sm": "0.5rem",
+            "margin-mobile": "1rem",
+            "space-xl": "2.25rem",
+            "gutter-mobile": "0.75rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "label-md": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "label-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-xl-mobile": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+            "label-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-xl": ["Plus Jakarta Sans", "sans-serif"],
+            "body-lg": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          "fontSize": {
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+            "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex selection:bg-primary selection:text-on-primary">
+<!-- SHARED COMPONENT: SideNavBar -->
+<aside class="fixed top-0 left-0 h-screen w-64 flex flex-col justify-between bg-surface border-r border-outline-variant/60 z-50">
+<div class="w-64 p-4 flex flex-col gap-6 shrink-0">
+<!-- Brand Header -->
+<div class="flex items-center gap-3 px-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high border border-outline-variant/50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-on-surface tracking-tight">Refugio</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Gestão &amp; Cuidados</span>
+</div>
+</div>
+<!-- Navigation Tabs (With Semantic Active Lock: 'Animais') -->
+<nav class="flex flex-col gap-1.5">
+<!-- Visão Geral -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container hover:text-on-surface transition-colors duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-outline" data-icon="space_dashboard">space_dashboard</span>
+<span>Visão Geral</span>
+</a>
+<!-- Animais (ACTIVE STATE) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-container-high text-primary font-label-lg text-label-lg border border-primary/20 shadow-sm transition-all duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-primary" data-icon="pets">pets</span>
+<span class="font-semibold text-primary">Animais</span>
+</a>
+<!-- Gastos -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container hover:text-on-surface transition-colors duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-outline" data-icon="payments">payments</span>
+<span>Gastos</span>
+</a>
+<!-- Configurações -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container hover:text-on-surface transition-colors duration-150 active:scale-[0.99]" href="#">
+<span class="material-symbols-outlined text-outline" data-icon="settings">settings</span>
+<span>Configurações</span>
+</a>
+</nav>
+<!-- Quick Context Action Button -->
+<div class="px-2 pt-2">
+<button class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-primary-container text-white font-bold text-label-lg hover:bg-primary hover:text-on-primary transition-all duration-150 shadow-md active:scale-95 shadow-emerald-950/40">
+<span class="material-symbols-outlined text-lg font-bold" data-icon="add">add</span>
+<span>Novo Residente</span>
+</button>
+</div>
+</div>
+<!-- Footer Links of Sidebar -->
+<div class="p-4 border-t border-outline-variant/60 flex flex-col gap-1.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container hover:text-on-surface transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-outline" data-icon="help">help</span>
+<span>Suporte</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container hover:text-error transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-outline" data-icon="logout">logout</span>
+<span>Sair</span>
+</a>
+</div>
+</aside>
+<!-- MAIN VIEWPORT CONTAINER -->
+<div class="pl-64 flex-1 flex flex-col min-h-screen bg-background">
+<!-- SHARED COMPONENT: TopNavBar -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest/90 backdrop-blur-md border-b border-outline-variant/60 flex justify-between items-center h-16 px-space-lg w-full">
+<div class="flex items-center gap-4 flex-1 max-w-md">
+<!-- Search Field -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg pointer-events-none" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface text-on-surface placeholder:text-outline border border-outline-variant/70 rounded-lg font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Buscar por nome, microchip, baia ou tutor..." type="text"/>
+</div>
+</div>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-3">
+<button aria-label="Notificações" class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-150">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Ajuda" class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-150">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-6 w-px bg-outline-variant/60 mx-1"></div>
+<button class="flex items-center gap-3 pl-2 pr-1 py-1 rounded-lg hover:bg-surface-container transition-colors">
+<div class="flex flex-col text-right">
+<span class="font-label-md text-label-md text-on-surface">Dra. Camila Santos</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Veterinária Chefe</span>
+</div>
+<div class="w-9 h-9 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary font-bold overflow-hidden">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+</button>
+</div>
+</header>
+<!-- CONTENT WORKSPACE -->
+<main class="flex-1 p-space-xl flex flex-col gap-6 max-w-7xl mx-auto w-full">
+<!-- Screen Header with Primary Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-2.5">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Diretório de Animais</h1>
+<span class="px-2.5 py-0.5 rounded-full font-label-md text-label-md bg-surface-container-high text-primary border border-outline-variant font-medium">
+              84 Ativos
+            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Gestão unificada de fichas cadastrais, condições clínicas e alocação de baias.
+          </p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-surface-container text-on-surface border border-outline-variant hover:border-outline font-label-lg text-label-lg transition-colors">
+<span class="material-symbols-outlined text-lg text-primary" data-icon="tune">tune</span>
+<span>Filtro Avançado</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary-container text-white font-bold font-label-lg text-label-lg hover:bg-primary hover:text-on-primary transition-all duration-150 shadow-md shadow-emerald-950/40 active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
+<span>Novo Animal</span>
+</button>
+</div>
+</div>
+<!-- Minimalist Pill Filters -->
+<div class="flex items-center gap-2 overflow-x-auto pb-2 border-b border-outline-variant/60">
+<button class="px-3.5 py-1.5 rounded-full bg-primary-container text-white font-label-md text-label-md font-bold flex items-center gap-1.5 shadow-sm">
+<span>Todos</span>
+<span class="opacity-90 font-mono">(84)</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high border border-outline-variant/70 font-label-md text-label-md flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-base text-primary" data-icon="sound_detection_dog_barking">sound_detection_dog_barking</span>
+<span>Cães</span>
+<span class="text-outline font-mono">(52)</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high border border-outline-variant/70 font-label-md text-label-md flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-base text-primary" data-icon="pets">pets</span>
+<span>Gatos</span>
+<span class="text-outline font-mono">(32)</span>
+</button>
+<div class="h-4 w-px bg-outline-variant/60 mx-1"></div>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high border border-outline-variant/70 font-label-md text-label-md flex items-center gap-1.5 transition-colors">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Em Tratamento</span>
+<span class="text-outline font-mono">(12)</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high border border-outline-variant/70 font-label-md text-label-md flex items-center gap-1.5 transition-colors">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>Prontos para Adoção</span>
+<span class="text-outline font-mono">(28)</span>
+</button>
+</div>
+<!-- Bento-style Grid of Animal Resident Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: Apollo -->
+<article class="bg-surface-container-low rounded-xl border border-outline-variant/70 overflow-hidden flex flex-col justify-between hover:border-outline transition-all duration-200 group">
+<div>
+<!-- Image Frame -->
+<div class="relative h-48 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A portrait of a healthy energetic golden retriever dog sitting calmly in an animal shelter courtyard, bathed in soft afternoon natural lighting with clean bokeh background. The image has rich dark slate shadows, modern realistic textures and botanical green leaves subtly framing the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWBPafOMyTCAYmae9NyiYb6ANilA69AlMgvQw14Peer5MrzCihslGSFetd7I9PvqMsofSIHrdWufxUSBYMsbnTLs9ck6AUPq6H-iQZ3HNwVjBEYNvnMFzqxjqYM-SVJ1V3cIwypmVkIcctvWoC-U9VmtYTRjjUK1prre2jPEvnWDyk0DLlm6EAl2s94sbvD-THQQyK0KVNzKUWno9qrDe4_YiAXsnoIhj36W1WRzYlbTcbFKenOTkNKg"/>
+<div class="absolute top-3 right-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-primary/15 text-primary border border-primary/30 backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Saudável
+                </span>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface/90 text-on-surface border border-outline-variant backdrop-blur-sm">
+                  Baia A-12 (Setor Canil Norte)
+                </span>
+</div>
+</div>
+<!-- Content Area -->
+<div class="p-space-md flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Apollo</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cão • Golden Retriever Mestiço</p>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-mono px-2 py-0.5 rounded bg-surface-container">
+                  2.5 anos
+                </span>
+</div>
+<!-- Metadata Pills -->
+<div class="grid grid-cols-2 gap-2 pt-2 border-t border-outline-variant/60 font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">MICROCHIP</span>
+<span class="font-mono text-on-surface font-label-md text-label-md tracking-tight">981.098.223.109</span>
+</div>
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">STATUS DE ADOÇÃO</span>
+<span class="text-primary font-label-md text-label-md font-medium">Apto &amp; Vacinado</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtle Action Footer -->
+<div class="p-space-md pt-0 flex items-center justify-between gap-2">
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-base text-primary" data-icon="medical_information">medical_information</span>
+<span>Ficha Clínica Completa</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface-variant hover:text-on-surface transition-colors" title="Editar Dados">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Luna -->
+<article class="bg-surface-container-low rounded-xl border border-outline-variant/70 overflow-hidden flex flex-col justify-between hover:border-outline transition-all duration-200 group">
+<div>
+<!-- Image Frame -->
+<div class="relative h-48 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A close-up studio style portrait of a sleek black domestic short-hair cat with striking green eyes resting on a cozy dark grey veterinary blanket. The lighting is calm and high-contrast, casting gentle highlights across its coat, matching an atmosphere of quiet recovery in a modern shelter." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDL9zqxjTS-4NtYm9bXqM6bDpe1z2lwVkZGLaZZQ0-4oOAW3g2tbJpdjhQ6n0HtdQ39HdS5WjVlSHkf6oM_WEuhtyd7sRp5SFhvOybNbpHFv9Ee6fhKqzIakg_MF3g1NPHedIwlzd5ZeSA7zHxEgM-fDUP2j_wj2_kHTxz07Voy7JecbmWTsF9GjAnZ4eFx2kNCDY2ufqlRC8sWZKx88IIBtRiFOKXXjmqvZMR8q31DCpvLDur2G5OuTA"/>
+<div class="absolute top-3 right-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-secondary/15 text-secondary border border-secondary/30 backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Em Recuperação
+                </span>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface/90 text-on-surface border border-outline-variant backdrop-blur-sm">
+                  Gatil B-04 (Isolamento 2)
+                </span>
+</div>
+</div>
+<!-- Content Area -->
+<div class="p-space-md flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Luna</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gato • Europeu Comum</p>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-mono px-2 py-0.5 rounded bg-surface-container">
+                  1 ano
+                </span>
+</div>
+<!-- Metadata Pills -->
+<div class="grid grid-cols-2 gap-2 pt-2 border-t border-outline-variant/60 font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">MICROCHIP</span>
+<span class="font-mono text-on-surface font-label-md text-label-md tracking-tight">981.098.341.872</span>
+</div>
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">PROTOCOLO ATUAL</span>
+<span class="text-secondary font-label-md text-label-md font-medium">Pós-cirúrgico D+4</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtle Action Footer -->
+<div class="p-space-md pt-0 flex items-center justify-between gap-2">
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-base text-primary" data-icon="medical_information">medical_information</span>
+<span>Ficha Clínica Completa</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface-variant hover:text-on-surface transition-colors" title="Editar Dados">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+</div>
+</article>
+<!-- Card 3: Thor -->
+<article class="bg-surface-container-low rounded-xl border border-outline-variant/70 overflow-hidden flex flex-col justify-between hover:border-outline transition-all duration-200 group">
+<div>
+<!-- Image Frame -->
+<div class="relative h-48 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A dignified senior boxer dog with a grizzled grey muzzle looking attentively at the camera in a specialized animal rehabilitation room. The lighting is soft and warm with clinical clean lines, subtle shadows, and emerald green floor textures that highlight professional shelter care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmZ4qWIET-qSKYwwsNTNdyidIW9Chmdj75wD5ubbGRvrwwOryfASf_w5qGBQ4cnNsVHxg9K8Naut2iMd9i8letNuUi4zJzPDKmuDrFpH4vJrrMeku29d-ldMFKck_T7nS8I1t0fnpcQzK_LJUInZId3dmfmW24j9PVWR7LB8VNNY3WEHF2XACMdciNOuJ8Xcuqm_7NRmGO4FTxXk65qB5mWPRW6Umdf0k-jWPmgWzlFst9JC4tV83VRA"/>
+<div class="absolute top-3 right-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-tertiary-container/20 text-tertiary border border-tertiary/30 backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                  Cuidados Especiais
+                </span>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface/90 text-on-surface border border-outline-variant backdrop-blur-sm">
+                  Baia S-01 (Ala Sênior)
+                </span>
+</div>
+</div>
+<!-- Content Area -->
+<div class="p-space-md flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Thor</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cão • Boxer Idoso</p>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-mono px-2 py-0.5 rounded bg-surface-container">
+                  9 anos
+                </span>
+</div>
+<!-- Metadata Pills -->
+<div class="grid grid-cols-2 gap-2 pt-2 border-t border-outline-variant/60 font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">MICROCHIP</span>
+<span class="font-mono text-on-surface font-label-md text-label-md tracking-tight">981.044.119.540</span>
+</div>
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">CONDUTA</span>
+<span class="text-secondary font-label-md text-label-md font-medium">Condroprotetor 2x/dia</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtle Action Footer -->
+<div class="p-space-md pt-0 flex items-center justify-between gap-2">
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-base text-primary" data-icon="medical_information">medical_information</span>
+<span>Ficha Clínica Completa</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface-variant hover:text-on-surface transition-colors" title="Editar Dados">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+</div>
+</article>
+<!-- Card 4: Mia -->
+<article class="bg-surface-container-low rounded-xl border border-outline-variant/70 overflow-hidden flex flex-col justify-between hover:border-outline transition-all duration-200 group">
+<div>
+<!-- Image Frame -->
+<div class="relative h-48 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="An adorable calico cat with distinct orange and black patches resting near a clean sunny window sill in an animal sanctuary playroom. Soft morning sunlight illuminates the serene scene, set against deep charcoal accents and minimalist interior details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOFUbvKtCuVVywPlQCk2mhEqfOqn_F-ivGuIRqC8UAlBhqOSiYGTL-bc4Ua7d6zkjFgysGeE1Tv5kZS8QETDvzMTC6PbWtQPm4vQ9_yGQbTGigctMMXThQksylpQO0m9Pcn5b1yoLn1CpngC5Daxike30q6ZEO6hkFU_2J1xzygUZooSGbBORVqGsV3beHNx7MuFEL5uYfRG82eO0wWf52pkD4fVz0kBkxSnjvekpi00iTjW76gR-Png"/>
+<div class="absolute top-3 right-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-primary/15 text-primary border border-primary/30 backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Saudável
+                </span>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface/90 text-on-surface border border-outline-variant backdrop-blur-sm">
+                  Gatil A-02 (Socialização)
+                </span>
+</div>
+</div>
+<!-- Content Area -->
+<div class="p-space-md flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Mia</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gato • Tricolor Calico</p>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-mono px-2 py-0.5 rounded bg-surface-container">
+                  8 meses
+                </span>
+</div>
+<!-- Metadata Pills -->
+<div class="grid grid-cols-2 gap-2 pt-2 border-t border-outline-variant/60 font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">MICROCHIP</span>
+<span class="font-mono text-on-surface font-label-md text-label-md tracking-tight">981.082.903.621</span>
+</div>
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">STATUS DE ADOÇÃO</span>
+<span class="text-primary font-label-md text-label-md font-medium">Castrada &amp; Pronta</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtle Action Footer -->
+<div class="p-space-md pt-0 flex items-center justify-between gap-2">
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-base text-primary" data-icon="medical_information">medical_information</span>
+<span>Ficha Clínica Completa</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface-variant hover:text-on-surface transition-colors" title="Editar Dados">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+</div>
+</article>
+<!-- Card 5: Bento -->
+<article class="bg-surface-container-low rounded-xl border border-outline-variant/70 overflow-hidden flex flex-col justify-between hover:border-outline transition-all duration-200 group">
+<div>
+<!-- Image Frame -->
+<div class="relative h-48 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A bright-eyed border collie mixed breed dog looking directly at the camera with perked ears in a secure outdoor training agility area of an animal welfare facility. The atmosphere is crisp and sharp, with deep slate-blue shadows and natural grass accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHfvRF41cRH5zOQ9tz-msiVCQ_axHCvZkCN6dCprYPL6Isv0QOatlwp7ztuFHQKik7I98kGNJdxfPwkFEse6he5TY3VTZWX9_5PjKPGQh1r4jDEDXiKtHKm8Qql--efGhcfiWVW6Ivk0rOLsuDk_3v1AA9V-Jd1LSFGrzW2jvtEVz-DoS70lYycTDzMBVoWB03IpC1Sv1SHs7Rp7jSA_H2fvVvMAM_bqx57iwHWFVKls4XZfXpdmlA_Q"/>
+<div class="absolute top-3 right-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-primary/15 text-primary border border-primary/30 backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Saudável
+                </span>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface/90 text-on-surface border border-outline-variant backdrop-blur-sm">
+                  Baia B-07 (Canil Central)
+                </span>
+</div>
+</div>
+<!-- Content Area -->
+<div class="p-space-md flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Bento</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cão • Mestiço Border Collie</p>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-mono px-2 py-0.5 rounded bg-surface-container">
+                  3 anos
+                </span>
+</div>
+<!-- Metadata Pills -->
+<div class="grid grid-cols-2 gap-2 pt-2 border-t border-outline-variant/60 font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">MICROCHIP</span>
+<span class="font-mono text-on-surface font-label-md text-label-md tracking-tight">981.011.754.329</span>
+</div>
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">COMPORTAMENTO</span>
+<span class="text-primary font-label-md text-label-md font-medium">Sociável &amp; Ativo</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtle Action Footer -->
+<div class="p-space-md pt-0 flex items-center justify-between gap-2">
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-base text-primary" data-icon="medical_information">medical_information</span>
+<span>Ficha Clínica Completa</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface-variant hover:text-on-surface transition-colors" title="Editar Dados">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+</div>
+</article>
+<!-- Card 6: Amora -->
+<article class="bg-surface-container-low rounded-xl border border-outline-variant/70 overflow-hidden flex flex-col justify-between hover:border-outline transition-all duration-200 group">
+<div>
+<!-- Image Frame -->
+<div class="relative h-48 w-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A gentle grey tabby kitten receiving gentle veterinary care on a sterile stainless examination table. Low depth of field, high contrast minimal environment with calm subdued slate tones and subtle emerald green medical monitor reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAznwDej-0juD45RKL_1mpjT7PNkKLPcD_aRCHxs8Dh3Ei58GjuQrKVNNRiVlLLH9THgJOSItUoBGPD7uIKNQEBN1a9lGL6DG6AHipAKoI4x0NSbFC2SjQBNnPvqiscIKB1WMyN9pGrm9zmsnqqADrZIo8vGY5VpfLv2WoBccon6CWMfxcFfU58S4xCFR4L2-BZjkZvaq5XepsQgrvvjTtWhRArrtpvDoQ-jkcsLHe-lRuZ4vGygwuwg"/>
+<div class="absolute top-3 right-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-label-sm text-label-sm bg-secondary/15 text-secondary border border-secondary/30 backdrop-blur-md">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Em Recuperação
+                </span>
+</div>
+<div class="absolute bottom-3 left-3">
+<span class="px-2 py-0.5 rounded font-label-sm text-label-sm bg-surface/90 text-on-surface border border-outline-variant backdrop-blur-sm">
+                  Gatil C-01 (Maternidade)
+                </span>
+</div>
+</div>
+<!-- Content Area -->
+<div class="p-space-md flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Amora</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gato • Tabby Cinza</p>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-mono px-2 py-0.5 rounded bg-surface-container">
+                  4 meses
+                </span>
+</div>
+<!-- Metadata Pills -->
+<div class="grid grid-cols-2 gap-2 pt-2 border-t border-outline-variant/60 font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">MICROCHIP</span>
+<span class="font-mono text-on-surface font-label-md text-label-md tracking-tight">981.077.419.002</span>
+</div>
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-label-sm">NUTRIÇÃO</span>
+<span class="text-secondary font-label-md text-label-md font-medium">Dieta Recovery</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Subtle Action Footer -->
+<div class="p-space-md pt-0 flex items-center justify-between gap-2">
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-base text-primary" data-icon="medical_information">medical_information</span>
+<span>Ficha Clínica Completa</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant text-on-surface-variant hover:text-on-surface transition-colors" title="Editar Dados">
+<span class="material-symbols-outlined text-base" data-icon="edit">edit</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Clean Pagination & Status Count Footer -->
+<footer class="mt-4 pt-6 border-t border-outline-variant/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Exibindo <span class="font-semibold text-on-surface font-mono">6</span> de <span class="font-semibold text-on-surface font-mono">84</span> residentes
+        </p>
+<!-- Pagination Controls -->
+<div class="flex items-center gap-1.5">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface-container border border-outline-variant/70 text-outline hover:text-on-surface disabled:opacity-40 disabled:pointer-events-none" disabled="">
+<span class="material-symbols-outlined text-base" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary-container text-white font-label-sm text-label-sm font-bold shadow-sm">
+            1
+          </button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface-container border border-outline-variant/70 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors">
+            2
+          </button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface-container border border-outline-variant/70 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors">
+            3
+          </button>
+<span class="px-1 text-outline font-body-sm">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface-container border border-outline-variant/70 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors">
+            14
+          </button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface-container border border-outline-variant/70 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-base" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

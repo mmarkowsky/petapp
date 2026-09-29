@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatório de casos de teste: Cadastrar um pet</title>
+  <style>
+    :root { color-scheme: light; --ink: #202b27; --muted: #5d6a64; --line: #d7dfda; --paper: #ffffff; --wash: #f2f6f3; --accent: #28634a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--wash); color: var(--ink); font: 15px/1.55 "Segoe UI", sans-serif; }
+    main { max-width: 1280px; margin: 0 auto; padding: 36px 24px 56px; }
+    header { border-bottom: 3px solid var(--accent); padding-bottom: 20px; margin-bottom: 28px; }
+    h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.2; }
+    h2 { margin: 32px 0 12px; font-size: 21px; }
+    p { margin: 8px 0; }
+    .muted { color: var(--muted); }
+    .table-wrap { overflow-x: auto; background: var(--paper); border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: #e7efe9; color: #254b39; font-size: 13px; }
+    tbody tr:last-child td { border-bottom: 0; }
+    ul { padding-left: 22px; }
+    li { margin: 8px 0; }
+    @media (max-width: 640px) { main { padding: 24px 14px 40px; } h1 { font-size: 25px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Relatório de casos de teste: Cadastrar um pet</h1>
+      <p class="muted"><strong>Fontes analisadas:</strong> História de usuário e critérios de aceite fornecidos na solicitação. Nenhum anexo foi fornecido.</p>
+    </header>
+
+    <section aria-labelledby="requirements-title">
+      <h2 id="requirements-title">Requisitos extraídos</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>ID</th><th>Requisito</th><th>Referência</th></tr></thead>
+        <tbody>
+          <tr><td>HU-01</td><td>O administrador quer cadastrar animais no módulo de animais para gerenciar as entradas e manter os dados organizados.</td><td>História de usuário</td></tr>
+          <tr><td>CA-01</td><td>A tela de animais apresenta a opção de cadastro pelo botão “Novo Animal”.</td><td>Critério de aceite, tela de animais</td></tr>
+          <tr><td>CA-02</td><td>A tela disponibiliza filtros por etapa, por cuidado e por prontos para adoção.</td><td>Critério de aceite, tela de animais</td></tr>
+          <tr><td>CA-03</td><td>A tela disponibiliza busca por nome ou raça.</td><td>Critério de aceite, tela de animais</td></tr>
+          <tr><td>CA-04</td><td>A tela mostra os animais com suas respectivas informações.</td><td>Critério de aceite, tela de animais</td></tr>
+          <tr><td>CA-05</td><td>Ao clicar em “Novo Animal”, abre um formulário com ícone da pegada, os títulos “Sumar un animal” e “Un nuevo comienzo empieza con cuidado.”, os campos “Nombre”, “Edad”, “Sexo”, “Raza o descripción” e o botão “Agregar al refugio”.</td><td>Critério de aceite, formulário</td></tr>
+          <tr><td>CA-06</td><td>Ao clicar no botão de adicionar, o pet aparece na lista do refúgio com as informações cadastradas previamente.</td><td>Critério de aceite, inclusão do pet</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section aria-labelledby="cases-title">
+      <h2 id="cases-title">Casos de teste</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>ID</th><th>Referência</th><th>Cenário</th><th>Pré-condições</th><th>Dados</th><th>Passos</th><th>Resultado esperado</th></tr></thead>
+        <tbody>
+          <tr><td>CT-001</td><td>CA-01, CA-02, CA-03</td><td>Controles disponíveis na tela de animais</td><td>A tela de animais está acessível.</td><td>Não especificado na entrada.</td><td>1. Acessar a tela de animais.</td><td>A tela apresenta o botão “Novo Animal”, filtros por etapa, cuidado e prontos para adoção, e busca por nome ou raça. Este caso verifica a disponibilidade dos controles, não os resultados da filtragem ou da busca.</td></tr>
+          <tr><td>CT-002</td><td>CA-05</td><td>Abertura e conteúdo do formulário de cadastro</td><td>A tela de animais está acessível.</td><td>Não especificado na entrada.</td><td>1. Clicar em “Novo Animal”.</td><td>Abre um formulário que apresenta o ícone da pegada, o título “Sumar un animal”, o texto “Un nuevo comienzo empieza con cuidado.”, os campos “Nombre”, “Edad”, “Sexo”, “Raza o descripción” e o botão “Agregar al refugio”.</td></tr>
+          <tr><td>CT-003</td><td>CA-04, CA-06</td><td>Inclusão do pet e conferência das informações na lista</td><td>O formulário de cadastro está aberto.</td><td>Valores de teste para os campos do formulário, definidos para a execução; a história não especifica valores, formatos ou regras de validação.</td><td>1. Preencher os campos do formulário com os valores de teste definidos.<br>2. Clicar em “Agregar al refugio”.<br>3. Consultar a lista de animais do refúgio.</td><td>O pet aparece na lista com as informações cadastradas previamente. Conferir que as informações apresentadas correspondem aos valores preenchidos, sem presumir quais outros campos ou formatos a lista deve exibir.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section aria-labelledby="coverage-title">
+      <h2 id="coverage-title">Requisitos sem cobertura completa</h2>
+      <ul>
+        <li><strong>CA-02:</strong> a presença dos filtros está coberta em CT-001, mas os valores disponíveis, a lógica e os resultados esperados de cada filtro não foram especificados.</li>
+        <li><strong>CA-03:</strong> a disponibilidade da busca está coberta em CT-001, mas o comportamento de busca, critérios de correspondência e resultados esperados não foram especificados.</li>
+        <li><strong>CA-04:</strong> a exibição do pet recém-cadastrado está coberta em CT-003. A lista de campos que deve apresentar para cada animal não foi especificada.</li>
+        <li><strong>CA-05:</strong> a presença do ícone da pegada está coberta em CT-002; aparência, posição e comportamento do ícone não foram especificados.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="questions-title">
+      <h2 id="questions-title">Dúvidas e bloqueios</h2>
+      <ul>
+        <li>Quais etapas e opções de cuidado devem estar disponíveis nos filtros? “Prontos para adoção” é um filtro separado? Quais resultados cada opção deve produzir?</li>
+        <li>Como a busca por nome ou raça deve funcionar (por exemplo, correspondência parcial ou exata)? Há regras de combinação com filtros?</li>
+        <li>Quais informações devem aparecer para cada animal na lista?</li>
+        <li>Quais campos são obrigatórios? Quais formatos, limites e opções são válidos para idade, sexo, nome e raça/descrição?</li>
+        <li>Qual aparência ou posição é esperada para o ícone da pegada?</li>
+        <li>A história não fornece dados concretos para o cadastro. CT-003 requer valores de teste definidos para a execução; não presume regras de validade.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="scope-title">
+      <h2 id="scope-title">Observação de escopo</h2>
+      <p>Os casos foram derivados exclusivamente da história e dos critérios de aceite fornecidos. Não foram inferidas regras de validação, estados vazios, mensagens, ordenação ou comportamento detalhado de filtros e busca.</p>
+    </section>
+  </main>
+</body>
+</html>
