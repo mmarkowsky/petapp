@@ -11,7 +11,7 @@
 | CA-02 | A tela disponibiliza filtros por etapa, por cuidado e por prontos para adoção. | Critério de aceite, tela de animais |
 | CA-03 | A tela disponibiliza busca por nome ou raça. | Critério de aceite, tela de animais |
 | CA-04 | A tela mostra os animais com suas respectivas informações. | Critério de aceite, tela de animais |
-| CA-05 | Ao clicar em “Novo Animal”, abre um formulário com ícone da pegada, os títulos “Sumar un animal” e “Un nuevo comienzo empieza con cuidado.”, os campos “Nombre”, “Edad”, “Sexo”, “Raza o descripción” e o botão “Agregar al refugio”. | Critério de aceite, formulário |
+| CA-05 | Ao clicar em “Novo animal”, abre um formulário com ícone da pegada, os títulos “Cadastrar animal” e “Um novo começo começa com cuidado.”, os campos “Nome”, “Idade aproximada”, “Sexo”, “Raça ou descrição” e o botão “Adicionar ao abrigo”. | Critério de aceite, formulário |
 | CA-06 | Ao clicar no botão de adicionar, o pet aparece na lista do refúgio com as informações cadastradas previamente. | Critério de aceite, inclusão do pet |
 
 ## Casos de teste
@@ -19,8 +19,8 @@
 | ID | Referência | Cenário | Pré-condições | Dados | Passos | Resultado esperado |
 |---|---|---|---|---|---|---|
 | CT-001 | CA-01, CA-02, CA-03 | Controles disponíveis na tela de animais | A tela de animais está acessível. | Não especificado na entrada. | 1. Acessar a tela de animais. | A tela apresenta o botão “Novo Animal”, filtros por etapa, cuidado e prontos para adoção, e busca por nome ou raça. Este caso verifica a disponibilidade dos controles, não os resultados da filtragem ou da busca. |
-| CT-002 | CA-05 | Abertura e conteúdo do formulário de cadastro | A tela de animais está acessível. | Não especificado na entrada. | 1. Clicar em “Novo Animal”. | Abre um formulário que apresenta o ícone da pegada, o título “Sumar un animal”, o texto “Un nuevo comienzo empieza con cuidado.”, os campos “Nombre”, “Edad”, “Sexo”, “Raza o descripción” e o botão “Agregar al refugio”. |
-| CT-003 | CA-04, CA-06 | Inclusão do pet e conferência das informações na lista | O formulário de cadastro está aberto. | Valores de teste para os campos do formulário, definidos para a execução; a história não especifica valores, formatos ou regras de validação. | 1. Preencher os campos do formulário com os valores de teste definidos. 2. Clicar em “Agregar al refugio”. 3. Consultar a lista de animais do refúgio. | O pet aparece na lista com as informações cadastradas previamente. Conferir que as informações apresentadas correspondem aos valores preenchidos, sem presumir quais outros campos ou formatos a lista deve exibir. |
+| CT-002 | CA-05 | Abertura e conteúdo do formulário de cadastro | A tela de animais está acessível. | Não especificado na entrada. | 1. Clicar em “Novo animal”. | Abre um formulário que apresenta o ícone da pegada, o título “Cadastrar animal”, o texto “Um novo começo começa com cuidado.”, os campos “Nome”, “Idade aproximada”, “Sexo”, “Raça ou descrição” e o botão “Adicionar ao abrigo”. |
+| CT-003 | CA-04, CA-06 | Inclusão do pet e conferência das informações na lista | O formulário de cadastro está aberto. | Valores de teste para os campos do formulário, definidos para a execução; a história não especifica valores, formatos ou regras de validação. | 1. Preencher os campos do formulário com os valores de teste definidos. 2. Clicar em “Adicionar ao abrigo”. 3. Consultar a lista de animais do refúgio. | O pet aparece na lista com as informações cadastradas previamente. Conferir que as informações apresentadas correspondem aos valores preenchidos, sem presumir quais outros campos ou formatos a lista deve exibir. |
 
 ## Requisitos sem cobertura completa
 

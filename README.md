@@ -27,4 +27,15 @@ Abre la URL que muestra Vite (normalmente `http://localhost:5173`). Si MySQL no 
 - Registro y desglose de gastos por comida, veterinario, vacunas y traslados.
 - API local en el puerto 3001, con estado disponible en `/api/health`.
 
+## Pruebas E2E
+
+Las pruebas usan Playwright con Chromium y una API simulada; no modifican la base de datos MySQL.
+
+```sh
+npx playwright install chromium
+npm run test:e2e
+```
+
+El informe HTML de Playwright se genera en `tests/resultados/e2e/playwright-report`. El informe de QA manual, con hallazgos y capturas, se sirve en `/tests/vibe-testing` cuando Vite está en ejecución.
+
 

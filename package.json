@@ -8,6 +8,8 @@
     "dev:all": "concurrently -k \"npm:dev\" \"npm:server\"",
     "server": "node server.js",
     "build": "tsc -b && vite build",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "lint": "oxlint",
     "preview": "vite preview"
   },
@@ -22,6 +24,7 @@
     "recharts": "^3.10.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.63.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^24.13.3",

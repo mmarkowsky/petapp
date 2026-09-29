@@ -1,0 +1,11 @@
+23. [GET] http://localhost:5173/api/health => [200] OK
+24. [GET] http://localhost:5173/api/health => [200] OK
+25. [GET] http://localhost:5173/api/animals => [200] OK
+26. [GET] http://localhost:5173/api/expenses => [200] OK
+27. [GET] http://localhost:5173/api/expenses/monthly => [200] OK
+
+Flujo manual: GET /api/health 200; GET /api/animals 200; GET /api/expenses 200; GET /api/expenses/monthly 200.
+Alta con nombre de solo espacios: POST /api/animals 400 Bad Request (respuesta real; datos no persistidos).
+Pruebas E2E aisladas: POST /api/expenses 500 y PATCH /api/animals/:id/stage 500 simulados por Playwright; sin acceso/escritura a MySQL.
+
+Note: 22 static requests not shown, run with "static" option to see them.

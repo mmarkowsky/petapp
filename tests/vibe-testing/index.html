@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Informe de QA exploratorio de petapp con evidencia reproducible." />
+    <title>Informe QA · petapp</title>
+    <style>
+      :root { color-scheme: light; --ink: #202a23; --muted: #66736a; --line: #dce4dc; --paper: #f6f8f5; --card: #fff; --red: #a53124; --red-bg: #fbe9e6; --amber: #865100; --amber-bg: #fff2d6; --green: #276443; --green-bg: #e5f3e9; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 system-ui, sans-serif; }
+      header { padding: 32px max(22px, calc((100vw - 1120px) / 2)); background: #e6efe7; border-bottom: 1px solid var(--line); }
+      main { max-width: 1120px; margin: 0 auto; padding: 24px 22px 64px; }
+      h1, h2, h3, p { margin-top: 0; }
+      h1 { margin-bottom: 8px; font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.12; }
+      h2 { margin-bottom: 14px; font-size: 1.35rem; }
+      h3 { margin-bottom: 8px; font-size: 1.08rem; }
+      a { color: #185c42; text-underline-offset: 3px; }
+      .lead { max-width: 760px; margin-bottom: 18px; color: #405248; }
+      .meta { display: flex; flex-wrap: wrap; gap: 8px 20px; color: #43574a; font-size: .9rem; }
+      .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 22px 0; }
+      .metric, .finding, .panel { border: 1px solid var(--line); border-radius: 7px; background: var(--card); }
+      .metric { padding: 14px; }
+      .metric strong { display: block; font-size: 1.45rem; }
+      .metric span { color: var(--muted); font-size: .88rem; }
+      .panel { margin: 18px 0; padding: 20px; }
+      .finding { margin: 14px 0; overflow: hidden; }
+      .finding-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+      .finding-head h3 { flex: 1 1 300px; margin: 0; }
+      .finding-body { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(230px, .75fr); gap: 20px; padding: 16px; }
+      .finding-body p { margin-bottom: 10px; }
+      .finding-body ol { margin: 6px 0 14px; padding-left: 22px; }
+      .badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: .78rem; font-weight: 700; }
+      .p2 { color: var(--red); background: var(--red-bg); }
+      .p3 { color: var(--amber); background: var(--amber-bg); }
+      .type { color: #3c5143; background: #edf2ed; }
+      figure { margin: 0; }
+      figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 4px; }
+      figcaption { margin-top: 5px; color: var(--muted); font-size: .8rem; }
+      .table-wrap { overflow-x: auto; }
+      table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+      th, td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+      th { white-space: nowrap; }
+      code { overflow-wrap: anywhere; }
+      .good { color: var(--green); font-weight: 700; }
+      .note { color: var(--muted); }
+      footer { padding-top: 14px; color: var(--muted); font-size: .88rem; }
+      @media (max-width: 720px) { .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } .finding-body { grid-template-columns: 1fr; } header { padding-top: 24px; padding-bottom: 24px; } main { padding-right: 14px; padding-left: 14px; } }
+      @media (max-width: 360px) { .metrics { grid-template-columns: 1fr 1fr; gap: 7px; } .metric { padding: 10px; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Informe de QA exploratorio · petapp</h1>
+      <p class="lead">Evaluación de los flujos de refugio, animales y gastos. Los resultados E2E usan respuestas API simuladas para no alterar MySQL.</p>
+      <div class="meta"><span>Fecha: 29 de septiembre de 2026</span><span>Entorno observado: <code>http://localhost:5173/</code></span><span>Viewports: 1440, 768, 390 y 320 px</span></div>
+    </header>
+    <main>
+      <section class="metrics" aria-label="Resumen de resultados">
+        <div class="metric"><strong>5</strong><span>hallazgos en total</span></div>
+        <div class="metric"><strong>1</strong><span>defecto responsive</span></div>
+        <div class="metric"><strong>0</strong><span>errores de consola al cargar</span></div>
+        <div class="metric"><strong>200</strong><span>respuestas GET iniciales</span></div>
+      </section>
+
+      <section class="panel" aria-labelledby="scope-title">
+        <h2 id="scope-title">Cobertura y resultado</h2>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Área</th><th>Resultado</th><th>Evidencia</th></tr></thead>
+          <tbody>
+            <tr><td>Navegación y datos</td><td class="good">Inicio, lista y gastos cargan; GET health, animals, expenses y monthly responden 200.</td><td><a href="evidence/network-requests.txt">Log de red</a></td></tr>
+            <tr><td>Búsqueda y filtros</td><td class="good">Búsqueda con caracteres especiales muestra vacío sin romper la página; filtro de adopción devuelve el animal correcto.</td><td>Exploración manual y test Playwright.</td></tr>
+            <tr><td>Formularios</td><td>Campo de nombre vacío y gasto con valor 0 quedan bloqueados por HTML; nombre de solo espacios llega a API y falla.</td><td>BUG-002, respuesta POST 400.</td></tr>
+            <tr><td>Responsive</td><td>Sin overflow a 1440, 768 o 390 px; overflow horizontal de 40 px a 320 px.</td><td><a href="evidence/animals-mobile-320.png">Captura 320 px</a></td></tr>
+            <tr><td>Accesibilidad por teclado</td><td>Los campos tienen labels y el diálogo tiene rol; Escape no lo cierra y el foco escapa al contenido de fondo.</td><td>BUG-003/004 y capturas.</td></tr>
+            <tr><td>Fechas y extremos</td><td>No existe campo de fecha en los flujos inspeccionados. Se probó texto especial; el alta no limita edades extremas.</td><td>Edad de 999 años aceptada por UI (validación de negocio no especificada).</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">Al cargar: 0 errores y 0 warnings de consola. El POST de nombre con espacios responde 400 y el navegador registra el error HTTP; los tests de fallo 500 interceptan la API de forma aislada.</p>
+      </section>
+
+      <section aria-labelledby="findings-title">
+        <h2 id="findings-title">Hallazgos reproducibles</h2>
+        <article class="finding">
+          <div class="finding-head"><span class="badge p2">P2 · medio</span><span class="badge type">Responsive / UX</span><h3>BUG-001 · Scroll horizontal a 320 px</h3><span>Área: navegación y todas las páginas</span></div>
+          <div class="finding-body"><div>
+            <p><strong>Descripción:</strong> En 320×740, <code>body</code> conserva un ancho mínimo de 360 px. El documento se desborda 40 px y obliga a desplazamiento horizontal, ocultando parte del contenido.</p>
+            <p><strong>Pasos:</strong></p><ol><li>Abrir <code>/</code>.</li><li>Navegar a Animais.</li><li>Emular 320×740.</li><li>Observar que <code>documentElement.scrollWidth</code> es 360 px para un viewport de 320 px.</li></ol>
+            <p><strong>Red:</strong> GET iniciales 200. <strong>Consola:</strong> limpia.</p>
+          </div><figure><a href="evidence/animals-mobile-320.png"><img src="evidence/animals-mobile-320.png" alt="Directorio de animales con viewport de 320 px y contenido desplazable lateralmente"></a><figcaption>Captura: tests/vibe-testing/evidence/animals-mobile-320.png</figcaption></figure></div>
+        </article>
+
+        <article class="finding">
+          <div class="finding-head"><span class="badge p2">P2 · medio</span><span class="badge type">Funcional / validación</span><h3>BUG-002 · Nombre con espacios crea una ficha fantasma</h3><span>Área: alta de animales</span></div>
+          <div class="finding-body"><div>
+            <p><strong>Descripción:</strong> El cliente aplica <code>trim()</code> pero agrega el animal al estado y muestra éxito antes de validar el nombre. La API rechaza el valor con HTTP 400; la respuesta no se gestiona y queda una ficha sin nombre durante la sesión. Al recargar desaparece.</p>
+            <p><strong>Pasos:</strong></p><ol><li>En Animais, abrir “Novo animal”.</li><li>Escribir tres espacios en Nome y enviar.</li><li>Observar el contador aumentado, una ficha sin nombre y el aviso de éxito.</li><li>Revisar Network: <code>POST /api/animals → 400 Bad Request</code>; recargar para ver que no persistió.</li></ol>
+            <p><strong>Consola/red:</strong> 1 error de recurso por el HTTP 400. El servidor responde “O nome é obrigatório.”, pero la UI no lo muestra.</p>
+          </div><figure><a href="evidence/animal-whitespace-rejected.png"><img src="evidence/animal-whitespace-rejected.png" alt="La lista muestra una ficha sin nombre y un aviso de éxito tras el rechazo 400"></a><figcaption>Captura del estado inconsistente tras el POST 400.</figcaption></figure></div>
+        </article>
+
+        <article class="finding">
+          <div class="finding-head"><span class="badge p2">P2 · medio</span><span class="badge type">Accesibilidad / teclado</span><h3>BUG-003 · Escape no cierra el diálogo</h3><span>Área: formularios</span></div>
+          <div class="finding-body"><div>
+            <p><strong>Descripción:</strong> El diálogo no escucha la tecla Escape, por lo que una interacción de teclado común no permite cerrar el formulario.</p>
+            <p><strong>Pasos:</strong></p><ol><li>Abrir el formulario de alta de animal.</li><li>Pulsar Escape.</li><li>El diálogo permanece abierto y el foco sigue en el campo.</li></ol>
+            <p><strong>Red:</strong> sin solicitudes nuevas. <strong>Consola:</strong> limpia.</p>
+          </div><figure><a href="evidence/modal-escape-320.png"><img src="evidence/modal-escape-320.png" alt="Diálogo de alta que permanece abierto después de presionar Escape"></a><figcaption>Captura después de Escape.</figcaption></figure></div>
+        </article>
+
+        <article class="finding">
+          <div class="finding-head"><span class="badge p2">P2 · medio</span><span class="badge type">Accesibilidad / teclado</span><h3>BUG-004 · El foco escapa del diálogo</h3><span>Área: formularios</span></div>
+          <div class="finding-body"><div>
+            <p><strong>Descripción:</strong> La secuencia Tab alcanza controles de la página que quedan detrás del diálogo. No hay focus trap ni restauración automática del foco al cerrar.</p>
+            <p><strong>Pasos:</strong></p><ol><li>Abrir el formulario de alta de animal.</li><li>Pulsar Tab sucesivamente hasta pasar el botón de envío.</li><li>El foco llega al botón “Fechar aviso” fuera del diálogo.</li></ol>
+            <p>El diálogo expone <code>role=dialog</code> y <code>aria-modal=true</code>, pero el foco no queda limitado.</p>
+          </div><figure><a href="evidence/modal-focus-escaped.png"><img src="evidence/modal-focus-escaped.png" alt="Formulario abierto mientras el foco se encuentra en un botón detrás del diálogo"></a><figcaption>Captura del foco fuera del diálogo.</figcaption></figure></div>
+        </article>
+
+        <article class="finding">
+          <div class="finding-head"><span class="badge p2">P2 · medio</span><span class="badge type">Funcional / errores de red</span><h3>BUG-005 · Errores de API conservan altas y cambios optimistas</h3><span>Área: altas, gastos y etapas</span></div>
+          <div class="finding-body"><div>
+            <p><strong>Descripción:</strong> Los handlers actualizan la UI antes de confirmar las escrituras, ignoran respuestas HTTP no-2xx y no revierten estado ni presentan error. Con POST de gastos o PATCH de etapa rechazados, el usuario ve datos/estado que no están guardados. También aplica al PUT de edición.</p>
+            <p><strong>Pasos:</strong></p><ol><li>Simular HTTP 500 para <code>POST /api/expenses</code>, enviar un gasto y observar que se agrega localmente y se cierra el diálogo.</li><li>Simular HTTP 500 para <code>PATCH /api/animals/:id/stage</code>, avanzar una etapa y observar que el badge cambia igualmente.</li><li>Recargar: los cambios no existen en el servidor.</li></ol>
+            <p><strong>Evidencia:</strong> los casos BUG-005/005b lo reproducen con respuestas mockeadas; no se escribieron datos en MySQL.</p>
+          </div><div><p><a href="../resultados/e2e/playwright-report/index.html">Abrir informe HTML de Playwright</a></p><p><a href="evidence/network-requests.txt">Solicitudes observadas</a></p><p><a href="evidence/console-errors.txt">Errores de consola observados</a></p></div></div>
+        </article>
+      </section>
+
+      <section class="panel" aria-labelledby="automated-title">
+        <h2 id="automated-title">Pruebas automatizadas</h2>
+        <p>La suite cubre navegación, búsqueda especial, filtros, validación HTML, CRUD de animales, cambio de etapa, registro de gasto y viewports de 1440, 768 y 390 px. Los defectos conocidos están registrados como fallos esperados para mantener visible la regresión sin contaminar MySQL.</p>
+        <p>Comando: <code>npm run test:e2e</code>. Artefactos: <code>tests/resultados/e2e</code>.</p>
+      </section>
+      <footer>Informe generado tras exploración manual y pruebas Chromium. No se modificaron registros reales; las pruebas E2E interceptan la API.</footer>
+    </main>
+  </body>
+</html>

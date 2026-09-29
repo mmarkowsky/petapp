@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultados E2E · petapp</title>
+    <style>
+      body { margin: 0; padding: 32px 20px; background: #f5f7f4; color: #202a23; font: 16px/1.55 system-ui, sans-serif; }
+      main { max-width: 900px; margin: 0 auto; }
+      h1 { line-height: 1.15; }
+      section { margin: 18px 0; padding: 20px; border: 1px solid #dce4dc; border-radius: 7px; background: white; }
+      a { color: #185c42; }
+      code { overflow-wrap: anywhere; }
+      .summary { display: flex; flex-wrap: wrap; gap: 16px; }
+      .summary strong { font-size: 1.35rem; }
+      li { margin: 6px 0; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Resultados E2E de petapp</h1>
+      <p>Corrida Playwright/Chromium del 29 de septiembre de 2026. API mockeada en todos los tests; MySQL no fue alterado.</p>
+      <section class="summary" aria-label="Resumen">
+        <div><strong>12</strong><br />tests completados</div>
+        <div><strong>6</strong><br />defectos conocidos reproducidos como fallos esperados</div>
+        <div><strong>6</strong><br />flujos/regresiones correctos</div>
+      </section>
+      <section>
+        <h2>Informes y evidencias</h2>
+        <ul>
+          <li><a href="playwright-report/index.html">Informe HTML detallado de Playwright</a></li>
+          <li><a href="../vibe-testing/index.html">Informe de QA exploratorio</a></li>
+          <li><a href="../vibe-testing/evidence/network-requests.txt">Log de red y status codes</a></li>
+          <li><a href="../vibe-testing/evidence/console-errors.txt">Log de consola</a></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Ejecución</h2>
+        <p><code>npm run test:e2e</code></p>
+        <p>Los screenshots de los fallos de Playwright y las trazas se guardan en <code>artifacts/</code>; las capturas de exploración manual están en <code>../vibe-testing/evidence/</code>.</p>
+      </section>
+    </main>
+  </body>
+</html>

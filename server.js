@@ -39,7 +39,7 @@ app.get('/api/animals', async (_request, response) => {
 
 app.post('/api/animals', async (request, response) => {
   const { name, age, breed, sex, stage, image, rescued } = request.body
-  if (typeof name !== 'string' || !name.trim()) return response.status(400).json({ error: 'El nombre es obligatorio.' })
+  if (typeof name !== 'string' || !name.trim()) return response.status(400).json({ error: 'O nome é obrigatório.' })
   const safeStage = stages.includes(stage) ? stage : stages[0]
   const [result] = await pool.execute(
     'INSERT INTO animals (name, age, breed, sex, stage, image, rescued) VALUES (?, ?, ?, ?, ?, ?, ?)',
@@ -50,22 +50,22 @@ app.post('/api/animals', async (request, response) => {
 
 app.put('/api/animals/:id', async (request, response) => {
   const { name, age, breed, sex, stage, image, rescued } = request.body
-  if (typeof name !== 'string' || !name.trim()) return response.status(400).json({ error: 'El nombre es obligatorio.' })
-  if (!stages.includes(stage)) return response.status(400).json({ error: 'La etapa no es válida.' })
+  if (typeof name !== 'string' || !name.trim()) return response.status(400).json({ error: 'O nome é obrigatório.' })
+  if (!stages.includes(stage)) return response.status(400).json({ error: 'A etapa não é válida.' })
   await pool.execute(
     'UPDATE animals SET name = ?, age = ?, breed = ?, sex = ?, stage = ?, image = ?, rescued = ? WHERE id = ?',
     [name.trim(), age || 'Sin dato', breed || 'Mestizo', sex === 'Hembra' ? 'Hembra' : 'Macho', stage, image || '', rescued || 'hoy', request.params.id],
   )
   const [rows] = await pool.execute('SELECT id, name, age, breed, sex, stage, image, rescued FROM animals WHERE id = ?', [request.params.id])
-  if (!rows.length) return response.status(404).json({ error: 'No se encontró el animal.' })
+  if (!rows.length) return response.status(404).json({ error: 'O animal não foi encontrado.' })
   response.json({ ...rows[0], id: Number(rows[0].id) })
 })
 
 app.patch('/api/animals/:id/stage', async (request, response) => {
   const { stage } = request.body
-  if (!stages.includes(stage)) return response.status(400).json({ error: 'La etapa no es válida.' })
+  if (!stages.includes(stage)) return response.status(400).json({ error: 'A etapa não é válida.' })
   const [result] = await pool.execute('UPDATE animals SET stage = ? WHERE id = ?', [stage, request.params.id])
-  if (result.affectedRows === 0) return response.status(404).json({ error: 'No se encontró el animal.' })
+  if (result.affectedRows === 0) return response.status(404).json({ error: 'O animal não foi encontrado.' })
   response.json({ id: Number(request.params.id), stage })
 })
 
@@ -83,7 +83,7 @@ app.post('/api/expenses', async (request, response) => {
   const { title, category, amount } = request.body
   const numericAmount = Number(amount)
   if (typeof title !== 'string' || !title.trim() || !categories.includes(category) || !Number.isFinite(numericAmount) || numericAmount <= 0) {
-    return response.status(400).json({ error: 'Revisa la descripción, categoría y monto del gasto.' })
+    return response.status(400).json({ error: 'Confira a descrição, a categoria e o valor da despesa.' })
   }
   const [result] = await pool.execute(
     'INSERT INTO expenses (title, category, amount, expense_date) VALUES (?, ?, ?, CURRENT_DATE())',
@@ -93,8 +93,8 @@ app.post('/api/expenses', async (request, response) => {
 })
 
 app.use((error, _request, response, _next) => {
-  console.error('Error de API:', error.message)
-  response.status(500).json({ error: 'No se pudo completar la operación.' })
+  console.error('Erro da API:', error.message)
+  response.status(500).json({ error: 'Não foi possível concluir a operação.' })
 })
 
-app.listen(port, () => console.log(`petapp API escuchando en http://localhost:${port}`))
+app.listen(port, () => console.log(`API petapp ouvindo em http://localhost:${port}`))
