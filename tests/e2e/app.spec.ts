@@ -84,7 +84,7 @@ async function mockApi(page: Page, options: ApiOptions = {}) {
 
 test.beforeEach(async ({ page }) => {
   await mockApi(page)
-  await page.goto('/')
+  await page.goto('/', { waitUntil: 'domcontentloaded' })
 })
 
 test('navega, filtra e busca texto especial sem quebrar a listagem', async ({ page }) => {
@@ -132,6 +132,19 @@ test('cria, avança etapa e edita um animal', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Nome' }).fill('QA animal editado')
   await page.getByRole('button', { name: 'Salvar alterações' }).click()
   await expect(page.getByRole('heading', { name: 'QA animal editado' })).toBeVisible()
+})
+
+test('HU-001 CT-003 @HU-001 @CT-003 cadastro inclui o pet na lista', async ({ page }) => {
+  await page.getByRole('button', { name: 'Animais 3' }).click()
+  await page.getByRole('button', { name: 'Novo animal' }).click()
+  await page.getByRole('textbox', { name: 'Nome' }).fill('Amora QA')
+  await page.getByRole('textbox', { name: 'Idade aproximada' }).fill('4 meses')
+  await page.getByRole('combobox', { name: 'Sexo' }).selectOption('Fêmea')
+  await page.getByRole('textbox', { name: 'Raça ou descrição' }).fill('Sem raça definida')
+  await page.getByRole('button', { name: 'Adicionar ao abrigo' }).click()
+
+  const card = page.locator('.resident-card').filter({ has: page.getByRole('heading', { name: 'Amora QA' }) })
+  await expect(card).toBeVisible()
 })
 
 test('registra uma despesa válida e mostra categoria traduzida', async ({ page }) => {

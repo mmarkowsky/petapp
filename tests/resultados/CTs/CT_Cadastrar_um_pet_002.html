@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Casos de teste: HU-001 Cadastrar um pet</title>
+  <style>
+    :root { color-scheme: light; --ink: #202b27; --muted: #5d6a64; --line: #d7dfda; --paper: #fff; --wash: #f2f6f3; --accent: #28634a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--wash); color: var(--ink); font: 15px/1.55 "Segoe UI", sans-serif; }
+    main { max-width: 1280px; margin: 0 auto; padding: 36px 24px 56px; }
+    header { border-bottom: 3px solid var(--accent); padding-bottom: 20px; margin-bottom: 28px; }
+    h1 { margin: 0 0 8px; font-size: 30px; line-height: 1.2; }
+    h2 { margin: 32px 0 12px; font-size: 21px; }
+    p { margin: 8px 0; }
+    .muted { color: var(--muted); }
+    .table-wrap { overflow-x: auto; background: var(--paper); border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: #e7efe9; color: #254b39; font-size: 13px; }
+    tbody tr:last-child td { border-bottom: 0; }
+    ul { padding-left: 22px; }
+    li { margin: 8px 0; }
+    @media (max-width: 640px) { main { padding: 24px 14px 40px; } h1 { font-size: 25px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Casos de teste: HU-001 Cadastrar um pet</h1>
+      <p class="muted"><strong>Fonte analisada:</strong> <code>tests/historias/HU-001-cadastrar-pet.md</code>. História de demonstração; validar com Produto antes de assumir os critérios como oficiais.</p>
+    </header>
+
+    <section aria-labelledby="requirements-title">
+      <h2 id="requirements-title">Requisitos extraídos</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>ID</th><th>Requisito</th><th>Referência</th></tr></thead>
+        <tbody>
+          <tr><td>HU-01</td><td>Como administrador, quero cadastrar animais no módulo de animais para gerenciar as entradas e manter os dados organizados.</td><td>HU-001, História de usuário</td></tr>
+          <tr><td>CA-01</td><td>A tela de animais apresenta a opção de cadastro pelo botão “Novo Animal”.</td><td>HU-001, CA-01</td></tr>
+          <tr><td>CA-02</td><td>A tela disponibiliza filtros por etapa, por cuidado e por prontos para adoção.</td><td>HU-001, CA-02</td></tr>
+          <tr><td>CA-03</td><td>A tela disponibiliza busca por nome ou raça.</td><td>HU-001, CA-03</td></tr>
+          <tr><td>CA-04</td><td>A tela mostra os animais com suas respectivas informações.</td><td>HU-001, CA-04</td></tr>
+          <tr><td>CA-05</td><td>Ao clicar em “Novo animal”, abre um formulário com ícone da pegada, os títulos “Cadastrar animal” e “Um novo começo começa com cuidado.”, os campos “Nome”, “Idade aproximada”, “Sexo”, “Raça ou descrição” e o botão “Adicionar ao abrigo”.</td><td>HU-001, CA-05</td></tr>
+          <tr><td>CA-06</td><td>Ao clicar no botão de adicionar, o pet aparece na lista do refúgio com as informações cadastradas previamente.</td><td>HU-001, CA-06</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section aria-labelledby="cases-title">
+      <h2 id="cases-title">Casos de teste</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>ID</th><th>Referência</th><th>Cenário</th><th>Pré-condições</th><th>Dados</th><th>Passos</th><th>Resultado esperado</th></tr></thead>
+        <tbody>
+          <tr><td>CT-001</td><td>CA-01, CA-02, CA-03</td><td>Controles disponíveis na tela de animais</td><td>A tela de animais está acessível.</td><td>Não especificado na HU.</td><td>1. Acessar a tela de animais.</td><td>A tela apresenta a opção “Novo Animal”, filtros por etapa, cuidado e prontos para adoção, e busca por nome ou raça. Verifica disponibilidade, não resultados.</td></tr>
+          <tr><td>CT-002</td><td>CA-05</td><td>Abertura e conteúdo do formulário de cadastro</td><td>A tela de animais está acessível.</td><td>Não especificado na HU.</td><td>1. Clicar em “Novo animal”.</td><td>Abre o formulário com os textos, campos e botão enumerados em CA-05. A expectativa visual do ícone não está especificada.</td></tr>
+          <tr><td>CT-003</td><td>CA-04, CA-06</td><td>Inclusão do pet e conferência na lista</td><td>O formulário de cadastro está aberto.</td><td>Valores fictícios escolhidos para a execução; não definidos pela HU.</td><td>1. Preencher o formulário com os valores escolhidos.<br>2. Clicar em “Adicionar ao abrigo”.<br>3. Consultar a lista do refúgio.</td><td>O pet aparece na lista com as informações cadastradas previamente. A HU não enumera quais informações devem ser apresentadas para cada animal.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section aria-labelledby="coverage-title">
+      <h2 id="coverage-title">Requisitos sem cobertura completa</h2>
+      <ul>
+        <li><strong>CA-02:</strong> presença coberta em CT-001; opções, regras e resultados esperados não especificados.</li>
+        <li><strong>CA-03:</strong> presença coberta em CT-001; comportamento, correspondência e combinação com filtros não especificados.</li>
+        <li><strong>CA-04:</strong> CT-003 verifica inclusão, mas a HU não enumera as informações que a lista deve mostrar.</li>
+        <li><strong>CA-05:</strong> textos e controles cobertos em CT-002; aparência e posição do ícone não especificadas.</li>
+        <li><strong>CA-06:</strong> CT-003 deriva a presença do pet e a correspondência com dados cadastrados; dados e regras de validação não definidos.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="questions-title">
+      <h2 id="questions-title">Dúvidas e bloqueios</h2>
+      <ul>
+        <li>Quais etapas e opções de cuidado devem estar nos filtros, e quais resultados cada opção deve produzir?</li>
+        <li>Como funciona a busca por nome ou raça? Há regras para combinar filtros e busca?</li>
+        <li>Quais informações devem aparecer para cada animal na lista?</li>
+        <li>Quais campos são obrigatórios? Quais formatos, limites e opções são válidos?</li>
+        <li>Qual aparência ou posição é esperada para o ícone da pegada?</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="scope-title">
+      <h2 id="scope-title">Observação de escopo</h2>
+      <p>Os casos foram derivados exclusivamente da HU-001. Nenhuma regra foi inferida do código ou da exploração. A automação <code>@HU-001 @CT-003</code> cobre o aparecimento do pet na lista com API simulada; não valida persistência integrada nem resolve os critérios em aberto.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,121 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - complementary [ref=e4]:
+      - link "petapp. ABRIGO" [ref=e5] [cursor=pointer]:
+        - /url: "#inicio"
+        - generic [ref=e12]:
+          - text: petapp.
+          - generic [ref=e13]: ABRIGO
+      - generic [ref=e14]: MENU PRINCIPAL
+      - navigation "Navegação principal" [ref=e15]:
+        - button "Visão geral" [ref=e16] [cursor=pointer]
+        - button "Animais 2" [active] [ref=e327] [cursor=pointer]:
+          - text: Animais
+          - generic [ref=e28]: "2"
+        - button "Despesas" [ref=e29] [cursor=pointer]
+      - generic [ref=e32]:
+        - paragraph [ref=e37]:
+          - strong [ref=e38]: Um lar começa aqui.
+          - generic [ref=e39]: Cada cuidado faz diferença.
+        - button "AM Andrea Méndez Administradora" [ref=e43] [cursor=pointer]:
+          - generic [ref=e44]: AM
+          - generic [ref=e45]:
+            - strong [ref=e46]: Andrea Méndez
+            - generic [ref=e47]: Administradora
+    - main [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - generic [ref=e55]: Abrigo
+          - strong [ref=e58]: Animais
+        - generic [ref=e59]:
+          - generic [ref=e60]: Conectado ao MySQL
+          - button "Ajuda" [ref=e62] [cursor=pointer]
+          - generic [ref=e66]: AM
+      - generic [ref=e67]:
+        - generic [ref=e398]:
+          - generic [ref=e399]:
+            - generic [ref=e400]: GESTÃO DO ABRIGO
+            - generic [ref=e402]:
+              - heading "Animais do abrigo" [level=1] [ref=e403]
+              - generic [ref=e404]: 2 cadastrados
+            - paragraph [ref=e405]: Acompanhe os cadastros, os cuidados e a preparação para adoção.
+          - generic [ref=e406]:
+            - generic [ref=e407]:
+              - generic [ref=e408]: Etapa
+              - combobox "Etapa" [ref=e409] [cursor=pointer]:
+                - option "Todos" [selected]
+                - option "Novo"
+                - option "Tosa"
+                - option "Banho"
+                - option "Consulta veterinária"
+                - option "Vacinado"
+                - option "Castrado"
+            - button "Novo animal" [ref=e410] [cursor=pointer]
+        - generic [ref=e412]:
+          - generic "Filtros de animais" [ref=e413]:
+            - button "Todos 2" [ref=e414] [cursor=pointer]:
+              - text: Todos
+              - generic [ref=e415]: "2"
+            - button "Sob cuidados 2" [ref=e416] [cursor=pointer]:
+              - text: Sob cuidados
+              - generic [ref=e417]: "2"
+            - button "Prontos para adoção 0" [ref=e418] [cursor=pointer]:
+              - text: Prontos para adoção
+              - generic [ref=e419]: "0"
+          - textbox "Pesquisar animal" [ref=e424]:
+            - /placeholder: Pesquisar por nome ou raça...
+        - generic [ref=e425]:
+          - article [ref=e426]:
+            - generic [ref=e427]:
+              - img "Foto de teste" [ref=e428]
+              - generic [ref=e429]: Novo
+              - generic [ref=e430]: Resgatado Hoje
+            - generic [ref=e431]:
+              - generic [ref=e432]:
+                - generic [ref=e433]:
+                  - heading "teste" [level=2] [ref=e434]
+                  - paragraph [ref=e435]: Cão · Sem raça definida
+                - generic [ref=e436]: Não informado
+              - generic [ref=e437]:
+                - generic [ref=e438]:
+                  - generic [ref=e439]: ETAPA ATUAL
+                  - strong [ref=e440]: Novo
+                - generic [ref=e441]:
+                  - generic [ref=e442]: PRÓXIMA ETAPA
+                  - button "Tosa" [ref=e443] [cursor=pointer]
+            - generic [ref=e446]:
+              - button "Prontuário completo" [ref=e447] [cursor=pointer]
+              - button "Editar dados de teste" [ref=e451] [cursor=pointer]
+          - article [ref=e455]:
+            - generic [ref=e456]:
+              - img "Foto de teste" [ref=e457]
+              - generic [ref=e458]: Novo
+              - generic [ref=e459]: Resgatado Hoje
+            - generic [ref=e460]:
+              - generic [ref=e461]:
+                - generic [ref=e462]:
+                  - heading "teste" [level=2] [ref=e463]
+                  - paragraph [ref=e464]: Cão · Sem raça definida
+                - generic [ref=e465]: Não informado
+              - generic [ref=e466]:
+                - generic [ref=e467]:
+                  - generic [ref=e468]: ETAPA ATUAL
+                  - strong [ref=e469]: Novo
+                - generic [ref=e470]:
+                  - generic [ref=e471]: PRÓXIMA ETAPA
+                  - button "Tosa" [ref=e472] [cursor=pointer]
+            - generic [ref=e475]:
+              - button "Prontuário completo" [ref=e476] [cursor=pointer]
+              - button "Editar dados de teste" [ref=e480] [cursor=pointer]
+        - generic [ref=e484]:
+          - paragraph [ref=e485]:
+            - text: Exibindo
+            - strong [ref=e486]: 1–2
+            - text: de
+            - strong [ref=e487]: "2"
+            - text: animais
+          - generic [ref=e488]:
+            - button "Página anterior" [disabled] [ref=e489]
+            - generic [ref=e492]: 1 / 1
+            - button "Página seguinte" [disabled] [ref=e493]
+  - generic [aria-hidden] [ref=e326]: $6.5k

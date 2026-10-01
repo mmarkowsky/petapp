@@ -1,7 +1,7 @@
 ---
 name: user-story-test-cases
-description: "Analisa histórias de usuário e seus anexos para gerar casos de teste rastreáveis. Use quando pedirem casos de teste, cenários QA ou cobertura de critérios de aceitação baseados exclusivamente na história e nos anexos fornecidos."
-argument-hint: "Informe a história de usuário e anexe os requisitos e materiais relacionados."
+description: "Analisa uma história de usuário ou uma pasta de histórias para gerar casos de teste rastreáveis. Use quando pedirem casos de teste, cenários QA ou cobertura de critérios de aceitação baseados exclusivamente nas histórias e anexos fornecidos."
+argument-hint: "Informe o arquivo da história ou a pasta que contém as histórias e anexos."
 user-invocable: true
 ---
 
@@ -21,13 +21,13 @@ Analisar em detalhe os requisitos de entrada e gerar casos de teste fundamentado
 
 ## Procedimento
 
-1. **Conferir as entradas.** Identifique a história, os critérios de aceitação e todos os anexos fornecidos. Verifique se o conteúdo está completo e legível. Se faltar a história ou material essencial, peça somente o que for necessário para continuar.
+1. **Conferir as entradas.** Aceite um arquivo de história ou uma pasta. Para uma pasta, processe cada arquivo de história separadamente, associando apenas seus próprios critérios e anexos; não combine requisitos entre histórias. Identifique os arquivos fornecidos e verifique se estão completos e legíveis. Se faltar a história ou material essencial, peça somente o necessário.
 2. **Extrair requisitos.** Liste os atores, objetivos, regras, condições, dados, estados, validações e resultados observáveis explicitamente descritos. Separe cada requisito testável e atribua uma referência estável, como `HU-01` ou `ANX-01, página 2`.
 3. **Analisar a qualidade dos requisitos.** Detecte ambiguidades, contradições, lacunas, termos não definidos e critérios sem resultado observável. Cite a fonte e explique o que impede uma expectativa confiável. Não resolva essas questões por conta própria.
 4. **Derivar cenários.** Gere casos positivos, negativos, de limite ou de transição somente quando a fonte justificar essas condições e seus resultados esperados. Evite duplicatas e mantenha cada caso focado em um objetivo verificável.
 5. **Validar rastreabilidade.** Para cada caso, confira que passos, dados, pré-condições e resultado esperado são sustentados por uma ou mais referências da entrada. Remova ou marque como bloqueado qualquer detalhe sem suporte explícito.
 6. **Apresentar lacunas e cobertura.** Registre requisitos sem caso, requisitos não testáveis e perguntas pendentes. Não declare cobertura completa quando houver lacunas ou ambiguidades relevantes.
-7. **Gerar o relatório Markdown.** Crie um arquivo `.md` em `tests/resultados/CTs/` com o resumo das fontes, requisitos extraídos, todos os casos de teste, requisitos sem cobertura e dúvidas/bloqueios quando aplicável. Use a mesma estrutura da resposta em Markdown e o formato de nome `CT_<historia-normalizada>_001.md`, por exemplo `CT_Validar_cadastro_animal_001.md`.
+7. **Gerar o relatório Markdown.** Crie um arquivo `.md` em `tests/resultados/CTs/` com o resumo das fontes, requisitos extraídos, todos os casos de teste, requisitos sem cobertura e dúvidas/bloqueios quando aplicável. Use a mesma estrutura da resposta em Markdown e o formato `CT_<historia-normalizada>_001.md`, por exemplo `CT_Validar_cadastro_animal_001.md`. Ao processar uma pasta, gere um par de relatórios independente para cada história.
 8. **Gerar o relatório HTML.** Crie um relatório HTML em `tests/resultados/CTs/` com o mesmo conteúdo e nome-base do relatório Markdown, usando a extensão `.html` (por exemplo, `CT_Validar_cadastro_animal_001.html`). Normalize o título da história para o nome do arquivo, removendo caracteres inválidos e substituindo espaços por `_`. Escolha um único índice (`001`, `002`, `003`...) para os dois arquivos; se qualquer dos caminhos `.md` ou `.html` já existir, incremente o índice até que ambos os caminhos estejam livres, sem sobrescrever relatórios anteriores. Gere um HTML completo e autossuficiente, sem dependências externas, e escape o conteúdo fornecido pelo usuário antes de inseri-lo no HTML.
 
 ## Formato da resposta
