@@ -7,7 +7,7 @@
 # Test info
 
 - Name: app.spec.ts >> BUG-001: viewport estreito não deve gerar overflow horizontal
-- Location: tests/e2e/app.spec.ts:174:1
+- Location: tests/frontend/e2e/app.spec.ts:174:1
 
 # Error details
 
@@ -300,7 +300,7 @@ Received:    360
   221 |   await page.getByRole('textbox', { name: 'Descrição' }).fill('Despesa que falha')
   222 |   await page.getByRole('spinbutton', { name: 'Valor em ARS' }).fill('900')
   223 |   await page.getByRole('button', { name: 'Salvar despesa' }).click()
-  224 |   await page.screenshot({ path: 'tests/vibe-testing/evidence/expense-500-false-success.png', fullPage: false })
+  224 |   await page.screenshot({ path: 'tests/resultados/exploratorio/vibe-testing/evidence/expense-500-false-success.png', fullPage: false })
   225 |   await expect(page.getByRole('dialog')).toBeVisible()
   226 |   await expect(page.getByText('Despesa que falha')).toHaveCount(0)
   227 | })
@@ -311,7 +311,7 @@ Received:    360
   232 |   await page.getByRole('button', { name: 'Animais 3' }).click()
   233 |   const card = page.locator('.resident-card').filter({ has: page.getByRole('heading', { name: 'Milo' }) })
   234 |   await card.getByRole('button', { name: 'Tosa' }).click()
-  235 |   await page.screenshot({ path: 'tests/vibe-testing/evidence/stage-500-false-success.png', fullPage: false })
+  235 |   await page.screenshot({ path: 'tests/resultados/exploratorio/vibe-testing/evidence/stage-500-false-success.png', fullPage: false })
   236 |   await expect(card.locator('.resident-status')).toHaveText('Novo')
   237 | })
   238 | 

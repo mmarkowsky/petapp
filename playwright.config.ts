@@ -1,13 +1,13 @@
 import { defineConfig } from '@playwright/test'
 
 export default defineConfig({
-  testDir: './tests/e2e',
+  testDir: './tests/frontend/e2e',
   fullyParallel: false,
   reporter: [
     ['list'],
-    ['html', { outputFolder: 'tests/resultados/e2e/playwright-report', open: 'never' }],
+    ['html', { outputFolder: 'tests/resultados/frontend/e2e/playwright-report', open: 'never' }],
   ],
-  outputDir: 'tests/resultados/e2e/artifacts',
+  outputDir: 'tests/resultados/frontend/e2e/artifacts',
   timeout: 15_000,
   expect: { timeout: 3_000 },
   use: {

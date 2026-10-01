@@ -20,5 +20,5 @@ user-invocable: true
 2. Extraia objetivos, critérios, restrições e dúvidas sem reescrevê-los como novos requisitos.
 3. Proponha escopo, rastreabilidade, abordagem, dados/ambiente necessários, riscos, dependências e perguntas.
 4. Mostre cobertura e bloqueios por critério, distinguindo o que pode ser verificado do que precisa de decisão humana.
-5. Salve um Markdown por história em `tests/planos/PLANO_<ID>.md`; preserve arquivos existentes e incremente um sufixo se o destino já existir.
+5. Salve um Markdown por história em `tests/resultados/planos-de-teste/PLANO_<ID>.md`; preserve arquivos existentes e incremente um sufixo se o destino já existir.
 6. Resuma o plano e peça revisão humana antes de derivar casos ou automação.

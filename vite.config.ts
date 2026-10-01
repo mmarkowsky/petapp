@@ -10,7 +10,11 @@ export default defineConfig({
       configureServer(server) {
         server.middlewares.use((request, response, next) => {
           if (request.url === '/tests/vibe-testing') {
-            response.writeHead(302, { Location: '/tests/vibe-testing/' }).end()
+            response.writeHead(302, { Location: '/tests/resultados/exploratorio/vibe-testing/' }).end()
+            return
+          }
+          if (request.url === '/tests/resultados/exploratorio/vibe-testing') {
+            response.writeHead(302, { Location: '/tests/resultados/exploratorio/vibe-testing/' }).end()
             return
           }
           next()
@@ -18,10 +22,11 @@ export default defineConfig({
       },
     },
   ],
+  publicDir: 'frontend/public',
   server: {
     proxy: { '/api': 'http://localhost:3001' },
     watch: {
-      ignored: ['**/tests/resultados/e2e/**', '**/tests/vibe-testing/evidence/**'],
+      ignored: ['**/tests/resultados/frontend/e2e/**', '**/tests/resultados/exploratorio/vibe-testing/evidence/**'],
     },
   },
 })

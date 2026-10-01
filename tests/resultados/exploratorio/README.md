@@ -1,6 +1,6 @@
 # Resultados exploratórios
 
-Esta pasta contém relatórios de sessões realmente executadas. Use `tests/exploratorio/CHARTER_HU-001.md` como roteiro e crie um arquivo `EXEC_HU-001_<AAAA-MM-DD>.md` após a sessão.
+Esta pasta contém relatórios de sessões realmente executadas. Use `tests/exploratorio/CHARTER_HU-001.md` como roteiro e crie um arquivo `EXEC_HU-001_<AAAA-MM-DD>.md` após a sessão. O relatório HTML de QA exploratório fica em `tests/resultados/exploratorio/vibe-testing/`.
 
 ## Modelo de registro
 

@@ -221,7 +221,7 @@ test('BUG-005: POST de despesa rejeitado não deve manter lançamento fantasma',
   await page.getByRole('textbox', { name: 'Descrição' }).fill('Despesa que falha')
   await page.getByRole('spinbutton', { name: 'Valor em ARS' }).fill('900')
   await page.getByRole('button', { name: 'Salvar despesa' }).click()
-  await page.screenshot({ path: 'tests/vibe-testing/evidence/expense-500-false-success.png', fullPage: false })
+  await page.screenshot({ path: 'tests/resultados/exploratorio/vibe-testing/evidence/expense-500-false-success.png', fullPage: false })
   await expect(page.getByRole('dialog')).toBeVisible()
   await expect(page.getByText('Despesa que falha')).toHaveCount(0)
 })
@@ -232,7 +232,7 @@ test('BUG-005b: PATCH rejeitado deve reverter avanço otimista da etapa', async 
   await page.getByRole('button', { name: 'Animais 3' }).click()
   const card = page.locator('.resident-card').filter({ has: page.getByRole('heading', { name: 'Milo' }) })
   await card.getByRole('button', { name: 'Tosa' }).click()
-  await page.screenshot({ path: 'tests/vibe-testing/evidence/stage-500-false-success.png', fullPage: false })
+  await page.screenshot({ path: 'tests/resultados/exploratorio/vibe-testing/evidence/stage-500-false-success.png', fullPage: false })
   await expect(card.locator('.resident-status')).toHaveText('Novo')
 })
 

@@ -24,4 +24,4 @@ Como administrador, quero cadastrar animais no módulo de animais para gerenciar
 
 ## Histórico e origem
 
-Artefato de demonstração preparado para exercitar o fluxo de IA. Os critérios foram organizados a partir do exemplo de casos existente em `tests/resultados/CTs/CT_Cadastrar_um_pet_001.md`; as dúvidas continuam pendentes e não devem ser preenchidas por suposição.
+Artefato de demonstração preparado para exercitar o fluxo de IA. Os critérios foram organizados a partir do exemplo de casos existente em `tests/resultados/casos-de-teste/CT_Cadastrar_um_pet_001.md`; as dúvidas continuam pendentes e não devem ser preenchidas por suposição.

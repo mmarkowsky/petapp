@@ -87,7 +87,7 @@
             <p><strong>Descripción:</strong> En 320×740, <code>body</code> conserva un ancho mínimo de 360 px. El documento se desborda 40 px y obliga a desplazamiento horizontal, ocultando parte del contenido.</p>
             <p><strong>Pasos:</strong></p><ol><li>Abrir <code>/</code>.</li><li>Navegar a Animais.</li><li>Emular 320×740.</li><li>Observar que <code>documentElement.scrollWidth</code> es 360 px para un viewport de 320 px.</li></ol>
             <p><strong>Red:</strong> GET iniciales 200. <strong>Consola:</strong> limpia.</p>
-          </div><figure><a href="evidence/animals-mobile-320.png"><img src="evidence/animals-mobile-320.png" alt="Directorio de animales con viewport de 320 px y contenido desplazable lateralmente"></a><figcaption>Captura: tests/vibe-testing/evidence/animals-mobile-320.png</figcaption></figure></div>
+           </div><figure><a href="evidence/animals-mobile-320.png"><img src="evidence/animals-mobile-320.png" alt="Directorio de animales con viewport de 320 px y contenido desplazable lateralmente"></a><figcaption>Captura: tests/resultados/exploratorio/vibe-testing/evidence/animals-mobile-320.png</figcaption></figure></div>
         </article>
 
         <article class="finding">
@@ -130,7 +130,7 @@
       <section class="panel" aria-labelledby="automated-title">
         <h2 id="automated-title">Pruebas automatizadas</h2>
         <p>La suite cubre navegación, búsqueda especial, filtros, validación HTML, CRUD de animales, cambio de etapa, registro de gasto y viewports de 1440, 768 y 390 px. Los defectos conocidos están registrados como fallos esperados para mantener visible la regresión sin contaminar MySQL.</p>
-        <p>Comando: <code>npm run test:e2e</code>. Artefactos: <code>tests/resultados/e2e</code>.</p>
+         <p>Comando: <code>npm run test:e2e</code>. Artefactos: <code>tests/resultados/frontend/e2e</code>.</p>
       </section>
       <footer>Informe generado tras exploración manual y pruebas Chromium. No se modificaron registros reales; las pruebas E2E interceptan la API.</footer>
     </main>

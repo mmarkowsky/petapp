@@ -26,7 +26,7 @@ jobs:
         with:
           name: playwright-results
           path: |
-            tests/resultados/e2e/playwright-report/
-            tests/resultados/e2e/artifacts/
+            tests/resultados/frontend/e2e/playwright-report/
+            tests/resultados/frontend/e2e/artifacts/
           if-no-files-found: ignore
           retention-days: 14

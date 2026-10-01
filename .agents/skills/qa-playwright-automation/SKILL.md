@@ -12,7 +12,7 @@ user-invocable: true
 - Automatize somente casos aprovados com resultado esperado sustentado por história/critério.
 - A história e os critérios são a fonte do comportamento esperado. Consulte o código e a aplicação apenas para selecionar locators, setup e estratégia técnica.
 - Não transforme comportamento atual do produto em requisito nem crie dados como regra de negócio.
-- Preserve os padrões existentes de `tests/e2e/`, use locators acessíveis e mantenha a suíte independente de serviços externos quando possível.
+- Preserve os padrões existentes de `tests/frontend/e2e/`, use locators acessíveis e mantenha a suíte independente de serviços externos quando possível.
 - Associe o teste à HU e ao ID do caso no título, por exemplo `@HU-001 @CT-003`.
 
 ## Procedimento
